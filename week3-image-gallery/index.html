@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Gallery | Image Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="#" class="logo">PIXEL<span>GALLERY.</span></a>
+        <p>Discover the beauty around you.</p>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <p class="eyebrow">YOUR VISUAL ESCAPE</p>
+            <h1>Explore the <span>Extraordinary.</span></h1>
+            <p class="description">
+                A curated collection of beautiful moments from around the world.
+            </p>
+        </section>
+
+        <nav class="filters" aria-label="Filter images">
+            <button class="filter-btn active" data-category="all">All Photos</button>
+            <button class="filter-btn" data-category="nature">Nature</button>
+            <button class="filter-btn" data-category="architecture">Architecture</button>
+            <button class="filter-btn" data-category="animals">Animals</button>
+        </nav>
+
+        <section class="gallery" id="gallery" aria-label="Photo gallery">
+
+            <article class="gallery-item" data-category="nature">
+                <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80" alt="Mountain lake surrounded by green hills" loading="lazy">
+                <div class="image-info">
+                    <span>Nature</span>
+                    <h2>Mountain Serenity</h2>
+                </div>
+            </article>
+
+            <article class="gallery-item" data-category="architecture">
+                <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80" alt="Modern architectural structure" loading="lazy">
+                <div class="image-info">
+                    <span>Architecture</span>
+                    <h2>Modern Lines</h2>
+                </div>
+            </article>
+
+            <article class="gallery-item" data-category="animals">
+                <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=900&q=80" alt="Fox in its natural habitat" loading="lazy">
+                <div class="image-info">
+                    <span>Animals</span>
+                    <h2>Wild and Free</h2>
+                </div>
+            </article>
+
+            <article class="gallery-item" data-category="nature">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80" alt="Sunlight passing through a forest" loading="lazy">
+                <div class="image-info">
+                    <span>Nature</span>
+                    <h2>Into the Forest</h2>
+                </div>
+            </article>
+
+            <article class="gallery-item" data-category="architecture">
+                <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=900&q=80" alt="Contemporary white building" loading="lazy">
+                <div class="image-info">
+                    <span>Architecture</span>
+                    <h2>Clean Design</h2>
+                </div>
+            </article>
+
+            <article class="gallery-item" data-category="animals">
+                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=80" alt="Dog looking toward the camera" loading="lazy">
+                <div class="image-info">
+                    <span>Animals</span>
+                    <h2>Little Companion</h2>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+        <button class="lightbox-close" id="closeLightbox" aria-label="Close image viewer">&times;</button>
+        <button class="lightbox-nav previous" id="prevImage" aria-label="Previous image">&#10094;</button>
+        <img id="lightboxImage" src="" alt="">
+        <button class="lightbox-nav next" id="nextImage" aria-label="Next image">&#10095;</button>
+        <p id="imageCaption"></p>
+    </div>
+
+    <footer class="footer">
+        <p>Designed with creativity · Built with HTML, CSS & JavaScript</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

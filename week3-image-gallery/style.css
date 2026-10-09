@@ -1,0 +1,642 @@
+/* ========================================
+   PIXEL GALLERY — PREMIUM DARK UI
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #090b14;
+    --surface: #111522;
+    --surface-light: #191e30;
+    --text: #f4f5ff;
+    --muted: #969bb5;
+    --purple: #a78bfa;
+    --blue: #60a5fa;
+    --border: rgba(255, 255, 255, 0.09);
+    --radius: 22px;
+    --transition: 0.35s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 15% 0%, rgba(124, 58, 237, 0.15), transparent 36%),
+        radial-gradient(ellipse at 90% 30%, rgba(37, 99, 235, 0.10), transparent 32%),
+        var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Subtle background texture */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.18;
+    background-image: radial-gradient(rgba(255,255,255,0.25) 0.6px, transparent 0.6px);
+    background-size: 22px 22px;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.header {
+    min-height: 86px;
+    padding: 20px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(9, 11, 20, 0.78);
+    backdrop-filter: blur(18px);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    animation: slideDown 0.7s ease both;
+}
+
+.logo {
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--purple);
+}
+
+.header > p {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   MAIN CONTAINER & INTRO
+   ======================================== */
+
+.container {
+    width: min(1200px, 86%);
+    margin: 0 auto;
+}
+
+.intro {
+    padding: 90px 0 42px;
+    text-align: center;
+    animation: fadeUp 0.8s 0.1s ease both;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--purple);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--purple);
+}
+
+.intro h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 5.5vw, 4.3rem);
+    font-weight: 700;
+    line-height: 1.13;
+    letter-spacing: -2.5px;
+}
+
+.intro h1 span {
+    background: linear-gradient(100deg, #c4b5fd, #818cf8, #60a5fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.description {
+    max-width: 580px;
+    margin: 22px auto 0;
+    color: var(--muted);
+    font-size: 1.02rem;
+}
+
+/* ========================================
+   FILTER BUTTONS
+   ======================================== */
+
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 25px 0 36px;
+    animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.filter-btn {
+    position: relative;
+    overflow: hidden;
+    padding: 11px 21px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.035);
+    color: #b8bdd2;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        color var(--transition),
+        background var(--transition),
+        border-color var(--transition),
+        transform var(--transition),
+        box-shadow var(--transition);
+}
+
+.filter-btn:hover {
+    color: white;
+    border-color: rgba(167, 139, 250, 0.55);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    color: #fff;
+    border-color: transparent;
+    background: linear-gradient(110deg, #7c3aed, #4f46e5);
+    box-shadow: 0 5px 24px rgba(124, 58, 237, 0.28);
+}
+
+.filter-btn:focus-visible,
+.lightbox button:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 4px;
+}
+
+/* ========================================
+   IMAGE GALLERY GRID
+   ======================================== */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    padding-bottom: 90px;
+}
+
+.gallery-item {
+    position: relative;
+    min-width: 0;
+    aspect-ratio: 4 / 4.6;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    cursor: zoom-in;
+    isolation: isolate;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+    animation: fadeUp 0.65s ease both;
+    transition:
+        transform var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.gallery-item:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.gallery-item:nth-child(3) {
+    animation-delay: 0.16s;
+}
+
+.gallery-item:nth-child(4) {
+    animation-delay: 0.24s;
+}
+
+.gallery-item:nth-child(5) {
+    animation-delay: 0.32s;
+}
+
+.gallery-item:nth-child(6) {
+    animation-delay: 0.4s;
+}
+
+.gallery-item:hover {
+    transform: translateY(-7px);
+    border-color: rgba(167, 139, 250, 0.55);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.35);
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.09);
+}
+
+/* Gradient overlay over each photo */
+
+.gallery-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        transparent 35%,
+        rgba(5, 7, 15, 0.25) 55%,
+        rgba(5, 7, 15, 0.95) 100%
+    );
+    opacity: 0.95;
+    transition: opacity var(--transition);
+}
+
+.image-info {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;
+    transform: translateY(5px);
+    transition: transform var(--transition);
+}
+
+.gallery-item:hover .image-info {
+    transform: translateY(0);
+}
+
+.image-info span {
+    display: inline-block;
+    margin-bottom: 9px;
+    padding: 5px 11px;
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #e4dcff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(10px);
+}
+
+.image-info h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* Used by JavaScript to filter images */
+
+.gallery-item.hidden {
+    display: none;
+}
+
+/* ========================================
+   LIGHTBOX / FULL-SCREEN IMAGE VIEWER
+   ======================================== */
+
+.lightbox[hidden] {
+    display: none;
+}
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 70px 90px;
+    background: rgba(3, 4, 10, 0.94);
+    backdrop-filter: blur(18px);
+    animation: lightboxFade 0.25s ease both;
+}
+
+.lightbox > img {
+    display: block;
+    max-width: min(100%, 1050px);
+    max-height: 78vh;
+    object-fit: contain;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 14px;
+    box-shadow: 0 25px 90px rgba(0, 0, 0, 0.55);
+    animation: imageAppear 0.35s ease both;
+}
+
+.lightbox-close,
+.lightbox-nav {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.09);
+    color: #fff;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    transition:
+        background var(--transition),
+        transform var(--transition),
+        border-color var(--transition);
+}
+
+.lightbox-close {
+    top: 26px;
+    right: 32px;
+    width: 48px;
+    height: 48px;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.lightbox-nav {
+    top: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+    transform: translateY(-50%);
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+    border-color: transparent;
+    background: linear-gradient(120deg, #7c3aed, #4f46e5);
+}
+
+.lightbox-close:hover {
+    transform: rotate(90deg);
+}
+
+.lightbox-nav:hover {
+    transform: translateY(-50%) scale(1.08);
+}
+
+.lightbox-nav.previous {
+    left: 25px;
+}
+
+.lightbox-nav.next {
+    right: 25px;
+}
+
+#imageCaption {
+    position: absolute;
+    bottom: 23px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    color: #d5d8eb;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+    padding: 25px 7%;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* ========================================
+   KEYFRAME ANIMATIONS
+   ======================================== */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes lightboxFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes imageAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ========================================
+   TABLET RESPONSIVENESS
+   ======================================== */
+
+@media (max-width: 900px) {
+    .container {
+        width: 90%;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 19px;
+    }
+
+    .intro {
+        padding-top: 72px;
+    }
+
+    .lightbox {
+        padding-right: 65px;
+        padding-left: 65px;
+    }
+}
+
+/* ========================================
+   MOBILE RESPONSIVENESS
+   ======================================== */
+
+@media (max-width: 560px) {
+    .header {
+        min-height: auto;
+        padding: 17px 5%;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .header > p {
+        font-size: 0.8rem;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+    .intro {
+        padding: 58px 0 25px;
+    }
+
+    .intro h1 {
+        font-size: clamp(2.1rem, 10vw, 3rem);
+        letter-spacing: -1.5px;
+    }
+
+    .description {
+        margin-top: 16px;
+        font-size: 0.92rem;
+    }
+
+    .filters {
+        gap: 9px;
+        margin: 22px 0 27px;
+    }
+
+    .filter-btn {
+        padding: 9px 14px;
+        font-size: 0.79rem;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 17px;
+        padding-bottom: 55px;
+    }
+
+    .gallery-item {
+        aspect-ratio: 1.15 / 1;
+        border-radius: 18px;
+    }
+
+    .image-info {
+        right: 17px;
+        bottom: 17px;
+        left: 17px;
+    }
+
+    .image-info h2 {
+        font-size: 1.2rem;
+    }
+
+    .lightbox {
+        padding: 65px 16px;
+    }
+
+    .lightbox > img {
+        max-height: 70vh;
+        border-radius: 10px;
+    }
+
+    .lightbox-close {
+        top: 15px;
+        right: 15px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .lightbox-nav {
+        top: auto;
+        bottom: 35px;
+        width: 43px;
+        height: 43px;
+        transform: none;
+    }
+
+    .lightbox-nav:hover {
+        transform: scale(1.08);
+    }
+
+    .lightbox-nav.previous {
+        left: calc(50% - 55px);
+    }
+
+    .lightbox-nav.next {
+        right: calc(50% - 55px);
+    }
+
+    #imageCaption {
+        bottom: 91px;
+        font-size: 0.85rem;
+    }
+
+    .footer {
+        padding: 20px 6%;
+        font-size: 0.78rem;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY: REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
